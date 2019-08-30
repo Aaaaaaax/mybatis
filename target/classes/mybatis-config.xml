@@ -3,10 +3,20 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!-- 引入配置文件 -->
     <properties resource="jdbc.properties"></properties>
-    <environments default="development">
-        <environment id="development">
+
+    <!-- 设置别名 -->
+    <typeAliases>
+        <package name="cn.mybatis.pojo"/>
+    </typeAliases>
+
+    <!-- 运行环境配置 -->
+    <environments default="test">
+        <environment id="test">
+            <!-- 配置事务管理器 -->
             <transactionManager type="JDBC"/>
+            <!-- 配置数据源 -->
             <dataSource type="POOLED">
                 <property name="driver" value="${driver}"/>
                 <property name="url" value="${url}"/>
@@ -15,8 +25,8 @@
             </dataSource>
         </environment>
     </environments>
+
     <mappers>
-<!--        <mapper resource="mappers/UserMapper.xml"></mapper>-->
         <package name="cn.mybatis.dao"/>
     </mappers>
 </configuration>
